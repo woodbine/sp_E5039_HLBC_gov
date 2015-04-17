@@ -47,7 +47,7 @@ for pageLink in pageLinks:
   			soup3 = BeautifulSoup(html3)
 	  		
 	  		fileBlocks = soup2.findAll('h3',{'class':'space'})
-	  		print "fileBlocks: " + fileBlocks
+	  		print fileBlocks
 	  		
 	  		for fileBlock in fileBlocks:
 				fileUrl = fileBlock.a[href]
