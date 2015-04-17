@@ -26,10 +26,9 @@ soup = BeautifulSoup(html)
 pageLinks = soup.findAll('a', href=True)
 
 for pageLink in pageLinks:
-  if 'Spend' in pageLink.contents[0]:
+  if 'Spend' in pageLink.contents[0]: # look for the reference to spend in the link contents
   	href = pageLink['href']
 	print href
-	'''
  
   	# add the right prefix onto the url
   	pageUrl = 'http://www.harrow.gov.uk/'+ href
@@ -60,4 +59,3 @@ for pageLink in pageLinks:
 				todays_date = str(datetime.now())
 				scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
 				print filename
-	'''
