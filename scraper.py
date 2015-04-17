@@ -42,16 +42,19 @@ for pageLink in pageLinks:
 	  		title = filePage.contents[0]
   			html3 = urllib2.urlopen(subPageUrl)
   			soup3 = BeautifulSoup(html3)
-	  		fileBlocks = soup2.findAll('h3',{'class':'space'})
+	  		fileBlocks = soup3.findAll('h3',{'class':'space'})
 	  		for fileBlock in fileBlocks:
 				fileUrl = fileBlock.a[href]
+				print fileUrl
 				# create the right strings for the new filename
 				title = title.upper().strip()
 				csvYr = title.split(' ')[0]
 				csvMth = title.split(' ')[1][:3]
 				csvMth = convert_mth_strings(csvMth);
-			
-				filename = entity_id + "_" + csvYr + "_" + csvMth
+				if ' - ' in title:
+					filename = "Qfile_" + entity_id + "_" + csvYr + "_" + csvMth
+				else:
+					filename = entity_id + "_" + csvYr + "_" + csvMth
 				todays_date = str(datetime.now())
 				scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
 			
