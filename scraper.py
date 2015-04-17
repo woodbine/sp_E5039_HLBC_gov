@@ -43,7 +43,7 @@ for pageLink in pageLinks:
   			html3 = urllib2.urlopen(subPageUrl)
   			soup3 = BeautifulSoup(html2)
 	  		
-	  		fileBlock = soup2.findAll('h3','class':'space')
+	  		fileBlock = soup2.findAll('h3',{'class':'space'})
 	  		
 	  		for fileBlock in fileBlocks:
 				fileUrl = fileBlock.a[href]
