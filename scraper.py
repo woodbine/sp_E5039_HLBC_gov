@@ -28,7 +28,6 @@ pageLinks = soup.findAll('a', href=True)
 for pageLink in pageLinks:
   if 'Spend' in pageLink.contents[0]: # look for the reference to spend in the link contents
   	href = pageLink['href']
-	print href
  
   	# add the right prefix onto the url
   	pageUrl = 'http://www.harrow.gov.uk/'+ href
@@ -41,19 +40,17 @@ for pageLink in pageLinks:
 	  	if 'Spend Data CSV' in filePage.contents[0]:
 	  		subPageUrl = filePage['href']
 	  		print subPageUrl
+	  		
 	  		title = filePage.contents[0]
 	  		suPageUrl = 'http://www.harrow.gov.uk/'+ href
   			html3 = urllib2.urlopen(subPageUrl)
-  			print html3
   			
   			soup3 = BeautifulSoup(html3)
 	  		
 	  		fileBlocks = soup2.findAll('h3',{'class':'space'})
-	  		print fileBlocks
 	  		
 	  		for fileBlock in fileBlocks:
 				fileUrl = fileBlock.a[href]
-				print fileUrl
 				
 				# create the right strings for the new filename
 				title = title.upper().strip()
