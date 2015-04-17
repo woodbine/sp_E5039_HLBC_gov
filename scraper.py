@@ -38,8 +38,8 @@ for pageLink in pageLinks:
   	filePages = soup2.findAll('a')
   	
 	for filePage in filePages:
-	  	subPageUrl = filePages['href']
-	  	if 'spend_data_csv' in subPageUrl:
+	  	if 'Spend Data CSV' in subPageUrl.contents[0]:
+	  		subPageUrl = filePage['href']
 	  		title = filePage.contents[0]
 	  		suPageUrl = 'http://www.harrow.gov.uk/'+ href
   			html3 = urllib2.urlopen(subPageUrl)
