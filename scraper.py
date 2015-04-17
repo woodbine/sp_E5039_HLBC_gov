@@ -26,10 +26,11 @@ soup = BeautifulSoup(html)
 pageLinks = soup.findAll('a', href=True)
 
 for pageLink in pageLinks:
-	print pageLink
+  if 'payments_to_suppliers' in pageLink:
+  	href = pageLink['href']
+	print href
 	'''
-  href = pageLink['href']
-  if 'payments_to_suppliers' in href:
+ 
   	# add the right prefix onto the url
   	pageUrl = 'http://www.harrow.gov.uk/'+ href
   	html2 = urllib2.urlopen(pageUrl)
