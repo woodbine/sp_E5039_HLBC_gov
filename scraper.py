@@ -26,6 +26,8 @@ soup = BeautifulSoup(html)
 pageLinks = soup.findAll('a', href=True)
 
 for pageLink in pageLinks:
+	print pageLink
+	'''
   href = pageLink['href']
   if 'payments_to_suppliers' in href:
   	# add the right prefix onto the url
@@ -57,3 +59,4 @@ for pageLink in pageLinks:
 				todays_date = str(datetime.now())
 				scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
 				print filename
+	'''
