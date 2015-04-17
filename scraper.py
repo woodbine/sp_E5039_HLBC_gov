@@ -35,7 +35,7 @@ for pageLink in pageLinks:
   	html2 = urllib2.urlopen(pageUrl)
   	soup2 = BeautifulSoup(html2)
   	
-  	filePages = soup2.findAll('a')
+  	filePages = soup2.findAll('a', href=True)
   	
 	for filePage in filePages:
 	  	if 'Spend Data CSV' in filePage.contents[0]:
@@ -47,6 +47,7 @@ for pageLink in pageLinks:
   			soup3 = BeautifulSoup(html3)
 	  		
 	  		fileBlocks = soup2.findAll('h3',{'class':'space'})
+	  		print "fileBlocks: " + fileBlocks
 	  		
 	  		for fileBlock in fileBlocks:
 				fileUrl = fileBlock.a[href]
@@ -62,4 +63,4 @@ for pageLink in pageLinks:
 				todays_date = str(datetime.now())
 				scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
 			
-				print filename # indent to force an error
+				print filename 
