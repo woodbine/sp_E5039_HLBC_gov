@@ -37,7 +37,7 @@ for pageLink in pageLinks:
   	filePages = soup2.findAll('a', href=True)
   	
 	for filePage in filePages:
-	  	if 'Spend Data CSV' in filePage.contents[0]:
+	  	if 'CSV' in filePage.contents[0]:
 	  		subPageUrl = filePage['href']
 	  		title = filePage.contents[0]
   			html3 = urllib2.urlopen(subPageUrl)
