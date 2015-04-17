@@ -40,6 +40,7 @@ for pageLink in pageLinks:
 	for filePage in filePages:
 	  	if 'Spend Data CSV' in filePage.contents[0]:
 	  		subPageUrl = filePage['href']
+	  		print subPageUrl
 	  		title = filePage.contents[0]
 	  		suPageUrl = 'http://www.harrow.gov.uk/'+ href
   			html3 = urllib2.urlopen(subPageUrl)
