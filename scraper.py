@@ -6,8 +6,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 
 # Set up variables
-entity_id = "E5035_CLBC_gov"
-url = "http://www.croydon.gov.uk/democracy/budgets/payments-over-500/"
+entity_id = "E5039_HLBC_gov"
+url = "http://www.harrow.gov.uk/info/100004/council_and_democracy/555/council_spending/2"
 
 # Set up functions
 def convert_mth_strings ( mth_string ):
@@ -27,25 +27,33 @@ pageLinks = soup.findAll('a')
 
 for pageLink in pageLinks:
   href = pageLink['href']
-  if '/payments-over-500/20' in href:
+  if 'payments_to_suppliers' in href:
   	# add the right prefix onto the url
-  	pageUrl = href.replace("/democracy","http://www.croydon.gov.uk/democracy")
+  	pageUrl = 'http://www.harrow.gov.uk/'+ href
   	html2 = urllib2.urlopen(pageUrl)
   	soup2 = BeautifulSoup(html2)
   	
-  	fileBlocks = soup2.findAll('a',{'class':'file-file'})
+  	filePages = soup2.findAll('a')
   	
-	for fileBlock in fileBlocks:
-	  	fileUrl = fileBlock['href']
-	  	fileUrl = fileUrl.replace("/sites","http://www.croydon.gov.uk/sites")
-	  	title = fileBlock.contents[0]
-		# create the right strings for the new filename
-		title = title.upper().strip()
-		csvYr = title.split(' ')[1]
-		csvMth = title.split(' ')[0][:3]
-		csvMth = convert_mth_strings(csvMth);
-	
-		filename = entity_id + "_" + csvYr + "_" + csvMth
-		todays_date = str(datetime.now())
-		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
-		print filename
+	for filePage in filePages:
+	  	subPageUrl = filePages['href']
+	  	if 'spend_data_csv' in subPageUrl:
+	  		title = filePage.contents[0]
+	  		suPageUrl = 'http://www.harrow.gov.uk/'+ href
+  			html3 = urllib2.urlopen(subPageUrl)
+  			soup3 = BeautifulSoup(html2)
+	  		
+	  		fileBlock = soup2.findAll('h3','class':'space')
+	  		
+	  		for fileBlock in fileBlocks:
+				fileUrl = fileBlock.a[href]
+				# create the right strings for the new filename
+				title = title.upper().strip()
+				csvYr = title.split(' ')[0]
+				csvMth = title.split(' ')[1][:3]
+				csvMth = convert_mth_strings(csvMth);
+			
+				filename = entity_id + "_" + csvYr + "_" + csvMth
+				todays_date = str(datetime.now())
+				scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
+				print filename
