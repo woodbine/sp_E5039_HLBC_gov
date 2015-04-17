@@ -44,9 +44,7 @@ for pageLink in pageLinks:
   			soup3 = BeautifulSoup(html3)
 	  		fileBlocks = soup3.findAll('h3',{'class':'space'})
 	  		for fileBlock in fileBlocks:
-				print fileBlock
 				fileUrl = fileBlock.a['href']
-				print fileUrl
 				# create the right strings for the new filename
 				title = title.upper().strip()
 				csvYr = title.split(' ')[0]
