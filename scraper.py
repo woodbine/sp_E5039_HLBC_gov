@@ -44,7 +44,7 @@ for pageLink in pageLinks:
 	  		title = filePage.contents[0]
 	  		suPageUrl = 'http://www.harrow.gov.uk/'+ href
   			html3 = urllib2.urlopen(subPageUrl)
-  			soup3 = BeautifulSoup(html2)
+  			soup3 = BeautifulSoup(html3)
 	  		
 	  		fileBlocks = soup2.findAll('h3',{'class':'space'})
 	  		
