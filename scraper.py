@@ -50,6 +50,8 @@ for pageLink in pageLinks:
 	  		
 	  		for fileBlock in fileBlocks:
 				fileUrl = fileBlock.a[href]
+				print fileUrl
+				
 				# create the right strings for the new filename
 				title = title.upper().strip()
 				csvYr = title.split(' ')[0]
