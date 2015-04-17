@@ -61,4 +61,5 @@ for pageLink in pageLinks:
 				filename = entity_id + "_" + csvYr + "_" + csvMth
 				todays_date = str(datetime.now())
 				scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
-				print filename
+			
+			print filename # indent to force an error
