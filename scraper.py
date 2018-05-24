@@ -135,6 +135,12 @@ for pageLink in pageLinks:
                 if 'July 2017 to Sept 2017' in title:
                     csvMth = 'Q2'
                     csvYr = '2017'
+                if 'October 2017 to December 2017' in title:
+                    csvMth = 'Q4'
+                    csvYr = '2017'
+                if 'January 2018 to March 2018' in title:
+                    csvMth = 'Q1'
+                    csvYr = '2018'
                 csvMth = convert_mth_strings(csvMth.upper())
                 data.append([csvYr, csvMth, fileUrl])
 
